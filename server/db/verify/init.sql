@@ -1,0 +1,22 @@
+-- Verify myblog:init on pg
+BEGIN;
+SELECT
+  id,
+  title,
+  slug,
+  excerpt,
+  content,
+  category_id
+FROM
+  post
+WHERE
+  false;
+SELECT
+  id,
+  route,
+  label
+FROM
+  category
+WHERE
+  false;
+ROLLBACK;
