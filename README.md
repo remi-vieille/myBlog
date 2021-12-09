@@ -25,6 +25,10 @@
   <a href="https://www.postgresql.org/" target="_blank">
     <img alt="PostgreSQL" src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white">
   </a> 
+    &emsp;
+  <a href="https://sqitch.org/" target="_blank">
+    <img alt="Sqitch" src="https://img.shields.io/badge/Sqitch-22538e?style=for-the-badge&logo=sqitch&Color=black">
+  </a> 
   &emsp;
   <a href="https://www.heroku.com/" target="_blank">
     <img alt="Heroku" src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white">
@@ -35,11 +39,11 @@
 
 ## Screenshot
 <p align="center"> 
-<img alt src="./docs/screenshot/off.png"><br>
+<img alt src="./server/conception/screenshot/off.png"><br>
 zen mode turned off
 </p> 
 </br>
 <p align="center"> 
-<img alt src="./docs/screenshot/off.png"><br>
+<img alt src="./server/conception/screenshot/off.png"><br>
 zen mode turned on
 </p> 
