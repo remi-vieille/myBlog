@@ -35,11 +35,11 @@
 
 ## Screenshot
 <p align="center"> 
-<img alt src="./docs/off.png">
+<img alt src="./docs/screenshot/off.png"><br>
 zen mode turned off
 </p> 
 </br>
 <p align="center"> 
-<img alt src="./docs/off.png">
+<img alt src="./docs/screenshot/off.png"><br>
 zen mode turned on
 </p> 
