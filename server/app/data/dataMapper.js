@@ -43,19 +43,22 @@ const dataMapper = {
     findPostById: async (id) => {
         let result = null;
         const query = {
-            text: "SELECT * FROM post WHERE id=$1",
+            text: "SELECT * FROM post WHERE id=$1;",
             value: [id]
-        }
+        };
 
         try {
             const res = await client.query(query.text, query.value);
 
             if (res.err) {
-                console.log(res.err)
+                // je loggue l'erreur
+                console.log(res.err);
             }
             else {
                 result = res.rows[0];
             }
+
+
         } catch (err) {
             console.log(err.stack);
         }
@@ -89,30 +92,8 @@ const dataMapper = {
     getCategoryId: async (categoryLabel) => {
         let result = null;
         const query = {
-            text: "SELECT id FROM category WHERE labal=$1",
+            text: "SELECT id FROM category WHERE label=$1;",
             value: [categoryLabel]
-        }
-        try {
-            const res = await client.query(query.text, query.value);
-
-            if (res.err) {
-                console.log(res.err);
-            }
-            else {
-                result = res.row[0].id;
-            }
-        } catch {
-            console.log(err.stack);
-        }
-
-
-        return result;
-    },
-    addPost: async (post) => {
-        let result = null;
-        const query = {
-            text: "INSERT INTO post (title,slug,excerpt,content,category_id) VALUES ($1,$2,$3,$4,$5) RETURNING *",
-            value: [post.title, post.slug, post.excerpt, post.content, post.category_id]
         };
 
         try {
@@ -122,13 +103,43 @@ const dataMapper = {
                 console.log(res.err);
             }
             else {
+                result = res.row[0].id;
+            }
+        } catch (err) {
+            console.log(err.stack);
+        }
+
+
+        return result;
+    },
+    addPost: async (post) => {
+
+        const query = {
+            text: "INSERT INTO post (title,slug,excerpt,content,category_id) VALUES ($1,$2,$3,$4,$5) RETURNING *",
+            value: [post.title, post.slug, post.excerpt, post.content, post.categoryId]
+        };
+
+        try {
+            const res = await client.query(query.text, query.value);
+
+            if (res.err) {
+                // je loggue l'erreur
+                console.log(res.err);
+            }
+            else {
                 result = res.rows[0];
                 console.log("result", result);
             }
-        } catch {
+
+
+        } catch (err) {
             console.log(err.stack);
         }
-    }
-}
 
-modules.exports = dataMapper;
+
+        return result;
+    }
+
+};
+
+module.exports = dataMapper;
