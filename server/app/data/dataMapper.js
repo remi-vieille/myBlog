@@ -80,7 +80,7 @@ const dataMapper = {
                 console.log(res.err);
             }
             else {
-                result = res.row[0];
+                result = res.rows[0];
             }
         } catch (err) {
             console.log(err.stack);
