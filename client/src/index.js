@@ -1,17 +1,24 @@
-import React from 'react';
+// == Import : npm
+import { BrowserRouter } from 'react-router-dom';
+import React from "react";
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
+// == Import : local
+// Composants
+// import Blog from 'src/components/Blog';
+// Styles
+import './styles/index.scss';
+
+// = Render
+// pour pouvoir utiliser le routeur,
+// il nous faut englober toute l'application dans le composant
+// BrowserRouter
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+   <BrowserRouter>
+      {/* <Blog /> */}
+      <h1>SALUT</h1>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
