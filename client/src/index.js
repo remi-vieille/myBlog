@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 
 // == Import : local
 // Composants
-// import Blog from 'src/components/Blog';
+import Blog from './components/Blog';
 // Styles
 import './styles/index.scss';
 
@@ -16,8 +16,7 @@ import './styles/index.scss';
 ReactDOM.render(
   <React.StrictMode>
    <BrowserRouter>
-      {/* <Blog /> */}
-      <h1>SALUT</h1>
+      <Blog />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
