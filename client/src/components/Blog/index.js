@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Routes, Route, Redirect } from 'react-router-dom';
 
 // Composants
 import Header from '../Header';
-
+import Spinner from '../Spinner';
+import Footer from '../Footer';
+import Posts from '../Posts';
+import Single from '../Single';
+import NotFound from '../NotFound';
 // data, styles et utilitaires
 import categoriesData from '../../data/categories';
 import './styles.scss'; 
@@ -79,11 +83,59 @@ const Blog = () => {
     };
 
     return (
-      <Header
-        categories={categoriesData}
-        isZenMode={zenMode}
-        onZenModeClick={toggleZenMode}
-      />
+      <div className="blog">
+        <Header
+          categories={categoriesData}
+          isZenMode={zenMode}
+          onZenModeClick={toggleZenMode}
+        />
+        {isLoading && <Spinner />}
+        {/* si je ne suis pas en chargement j'affiche mes routes */}
+        {!isLoading && (
+          <Routes>
+            {
+              /* 
+                Le Switch nous permet de n'afficher que la première route
+                de la liste qui match
+                Si on trouve une route de posts => on l'affiche
+                Si rien n'a été trouvé => on affichera la dernière route (Not Found)
+                on va mapper sur nos catégories
+                afin de créer une route pa catégorie
+              */
+             categoriesData.map((category) => (
+               //la route a comme path la route de la catégorie, genre /react
+                <Route
+                  key={category.route}
+                  path={category.route}
+                  element={<Posts 
+                              isZenMode={zenMode}
+                              // on filtre les posts donné au composant Posts
+                              // selon le nom de la catégorie
+                              // note : il y a un cas particulier pour "Accueil"
+                              // => voir dans la fonction getPostsByCategory
+                              posts={getPostsByCategory(postList, category.label)}
+                          />}
+                >
+                  
+                </Route>
+             ))
+            }
+            {/* on  donne tous les posts a Single.
+              Il ira ensuite trouver le bon selon le slug dans la route */}
+            <Route   
+              path="/article/:slug"
+              element={<Single posts={postList}/>}
+            >
+              
+            </Route>
+            {/* cette route n'a pas de path, elle sera toujours matchée */}
+            <Route  path="*" element={<NotFound />}>
+            </Route>
+          </Routes>
+        )}
+        <Footer />
+      </div>
+        
     );
 };
 

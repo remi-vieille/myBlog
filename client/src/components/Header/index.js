@@ -18,7 +18,8 @@ const Header = ({ categories, onZenModeClick, isZenMode }) => (
             className={(navData) => navData.isActive ? "menu-link--selected menu-link" : "menu-link" }
             // on retrouve la prop exact comme sur les Routes
             // pour activer la activeClassName que si l'url correspond EXACTEMENT
-            exact
+            //exact
+            //NavLink exact prop has been replaced by for react-router-dom 6
             to={category.route}
           >
             {category.label}

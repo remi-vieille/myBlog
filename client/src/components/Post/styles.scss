@@ -1,0 +1,72 @@
+@use 'src/styles/vars';
+
+// je vais cibler tous les elements .post
+// dont le parent direct est .posts-list--zen
+.posts-list--zen .post {
+  width: 100%;
+
+  // en mode zen, on va augmenter la taille du texte
+  &-title {
+    font-size: 1.5rem;
+  }
+
+  &-category {
+    font-size: 1rem;
+  }
+
+  &-excerpt {
+    font-size: 1.2rem;
+  }
+}
+
+.post {
+  width: 100%;
+  padding: vars.$gutter;
+
+  // si pas single, on peut cliquer
+  &:not(.post--single) {
+    cursor: pointer;
+  }
+
+  // si c'est un post--single (et que c'est aussi un post)
+  // equivalent de .post.post--single
+  // regle qui sera du coup plus spécifique
+  // que la media query du dessous
+  &.post--single {
+    width: 100%;
+    text-align: center;
+  }
+
+  @media (min-width: 600px) {
+    width: 50%;
+  }
+
+  &:hover {
+    background-color: vars.$post-hover-color;
+  }
+
+  &-title {
+    font-family: vars.$title-font;
+    font-weight: vars.$title-font-weight;
+    font-size: 1.3em;
+    color: vars.$title-color;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  &-category {
+    background-color: vars.$primary-color;
+    color: vars.$light-color;
+    display: inline-block;
+    padding: 0.3em 0.7em;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  &-excerpt {
+    margin-top: 0.5rem;
+    font-weight: 300;
+    color: vars.$post-text-color;
+  }
+}
